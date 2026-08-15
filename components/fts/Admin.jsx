@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Logo, StatusBadge, EmptyState, CountUp, CardsSkeleton, TableSkeleton } from './ui'
+import { Logo, StatusBadge, EmptyState, CountUp, CardsSkeleton, TableSkeleton, ThemeToggle } from './ui'
 import { api, fmtMoney, fmtMoneySigned, fmtPct, fmtDate, fmtDateTime, fmtNum } from '@/lib/fts-api'
 
 const NAV = [
@@ -400,6 +400,7 @@ export default function Admin({ user, onLogout, onHome, onDashboard }) {
           </Sheet>
           <div><h1 className="text-lg font-bold text-slate-900">{title}</h1></div>
           <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle />
             <span className="hidden sm:inline text-sm text-slate-500">{user.name}</span>
             <Avatar className="h-8 w-8"><AvatarFallback className="bg-slate-900 text-white text-sm font-semibold">{user.name.split(' ').map((s) => s[0]).join('').slice(0, 2)}</AvatarFallback></Avatar>
           </div>

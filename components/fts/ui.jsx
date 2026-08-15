@@ -4,6 +4,24 @@ import { motion, useInView, animate } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { TrendingUp } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
+
+// ---------- Theme toggle ----------
+export function ThemeToggle({ className = '' }) {
+  const [dark, setDark] = useState(false)
+  useEffect(() => { setDark(document.documentElement.classList.contains('dark')) }, [])
+  const toggle = () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    try { localStorage.setItem('fts_theme', isDark ? 'dark' : 'light') } catch {}
+    setDark(isDark)
+  }
+  return (
+    <button onClick={toggle} aria-label="Toggle theme"
+      className={`h-9 w-9 rounded-lg flex items-center justify-center text-slate-600 hover:bg-muted transition-colors ${className}`}>
+      {dark ? <Sun className="h-4.5 w-4.5 h-5 w-5" /> : <Moon className="h-5 w-5" />}
+    </button>
+  )
+}
 
 // ---------- Logo ----------
 export function Logo({ className = '', dark = false }) {

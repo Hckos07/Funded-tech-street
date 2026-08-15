@@ -21,7 +21,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Logo, StatusBadge, EmptyState, CountUp, CardsSkeleton, TableSkeleton } from './ui'
+import { Logo, StatusBadge, EmptyState, CountUp, CardsSkeleton, TableSkeleton, ThemeToggle } from './ui'
 import { api, setToken, fmtMoney, fmtMoneySigned, fmtPct, fmtDate, fmtDateTime, fmtNum } from '@/lib/fts-api'
 
 const NAV = [
@@ -587,6 +587,7 @@ export default function Dashboard({ user: initialUser, onLogout, onHome, onGetCh
           </Sheet>
           <h1 className="text-lg font-bold text-slate-900">{title}</h1>
           <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle />
             {/* account selector */}
             {accounts && accounts.length > 0 && (
               <Select value={selected?.id} onValueChange={(id) => setSelected(accounts.find((a) => a.id === id))}>
