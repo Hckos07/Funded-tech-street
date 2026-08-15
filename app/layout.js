@@ -23,7 +23,10 @@ export const viewport = { width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('fts_theme');if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}` }} />
+      </head>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
         <Toaster position="top-right" richColors />

@@ -188,7 +188,13 @@ function makeEquity(accountId, initial, final, points) {
   return out
 }
 
-async function ensureSeed(db) {
+async function ensureSeed(db, force = false) {
+  if (force) {
+    // wipe demo collections so we can regenerate deterministic demo data
+    const names = ['users', 'challenges', 'accounts', 'trades', 'transactions', 'payouts', 'notifications', 'kyc', 'audit_logs', 'equity_points']
+    for (const n of names) { try { await db.collection(n).deleteMany({}) } catch {} }
+    cached.seeded = false
+  }
   if (cached.seeded) return
   const count = await db.collection('users').countDocuments()
   if (count > 0) { cached.seeded = true; return }
@@ -300,6 +306,24 @@ async function handle(method, request, params) {
     const q = Object.fromEntries(url.searchParams)
 
     if (p === '' || p === 'health') return json({ ok: true, service: 'FundedTechStreet API', db: DB_NAME })
+
+    // ---- SEED (manual seed / reset for local setup) ----
+    if (p === 'seed' && (method === 'POST' || method === 'GET')) {
+      const force = q.force === '1' || q.force === 'true'
+      await ensureSeed(db, force)
+      const users = await db.collection('users').countDocuments()
+      const challenges = await db.collection('challenges').countDocuments()
+      const trades = await db.collection('trades').countDocuments()
+      return json({
+        ok: true,
+        message: force ? 'Database reset and re-seeded.' : 'Database is seeded (existing data kept).',
+        counts: { users, challenges, trades },
+        demoCredentials: {
+          trader: { email: 'demo@fundedtechstreet.com', password: 'Demo@12345' },
+          admin: { email: 'admin@fundedtechstreet.com', password: 'Admin@12345' },
+        },
+      })
+    }
 
     // ---- AUTH ----
     if (p === 'auth/register' && method === 'POST') return authRegister(db, body)

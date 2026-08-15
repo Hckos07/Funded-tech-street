@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button'
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from '@/components/ui/accordion'
-import { Logo, CountUp, Reveal } from './ui'
+import { Logo, CountUp, Reveal, ThemeToggle } from './ui'
 import { fmtMoney } from '@/lib/fts-api'
 
 const NAV = [
@@ -58,6 +58,7 @@ function Navbar({ onLogin, onGetFunded }) {
           ))}
         </nav>
         <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <Button variant="ghost" className="text-slate-700 hover:text-blue-600" onClick={onLogin}>Login</Button>
           <Button className="bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/25" onClick={onGetFunded}>
             Get Funded <ArrowRight className="ml-1 h-4 w-4" />
@@ -73,6 +74,7 @@ function Navbar({ onLogin, onGetFunded }) {
             <a key={n.label} href={n.href} onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50">{n.label}</a>
           ))}
           <div className="flex gap-2 pt-2">
+            <ThemeToggle className="border" />
             <Button variant="outline" className="flex-1" onClick={onLogin}>Login</Button>
             <Button className="flex-1 bg-blue-600 hover:bg-blue-700" onClick={onGetFunded}>Get Funded</Button>
           </div>

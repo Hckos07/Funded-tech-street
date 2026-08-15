@@ -81,3 +81,77 @@
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-thumb { background: rgba(100,116,139,.3); border-radius: 8px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(100,116,139,.5); }
+
+/* ============================= DARK MODE ============================= */
+@layer base {
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
+    --card: 222 44% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 44% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 20%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 33% 16%;
+    --muted-foreground: 215 20% 68%;
+    --accent: 217 33% 20%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 20%;
+    --input: 217 33% 24%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 62%;
+    --chart-2: 199 89% 55%;
+    --chart-3: 142 71% 50%;
+    --chart-4: 262 83% 70%;
+    --chart-5: 340 82% 66%;
+    --sidebar-background: 222 47% 9%;
+    --sidebar-foreground: 210 30% 80%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 18%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 217 33% 20%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+/* dark utility variants */
+.dark .glass { background: rgba(15,23,42,.62) !important; border-color: rgba(148,163,184,.14) !important; }
+.dark .soft-shadow { box-shadow: 0 16px 48px -12px rgba(0,0,0,.55) !important; }
+.dark .grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(96,165,250,.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(96,165,250,.09) 1px, transparent 1px);
+}
+
+/* remap hardcoded light colors so all pages adapt to dark */
+.dark .bg-white:not(.text-blue-700){ background-color:hsl(222 44% 11%) !important; }
+.dark .bg-white\/80,.dark .bg-white\/70,.dark .bg-white\/65{ background-color:hsl(222 44% 11% / .82) !important; }
+.dark .bg-slate-50,.dark .bg-slate-50\/60{ background-color:hsl(222 47% 8%) !important; }
+.dark .bg-slate-100{ background-color:hsl(217 33% 18%) !important; }
+.dark .bg-blue-50,.dark .bg-blue-50\/60,.dark .bg-blue-50\/40{ background-color:hsl(217 60% 20% / .5) !important; }
+.dark .bg-blue-100{ background-color:hsl(217 60% 26% / .6) !important; }
+.dark .border-white,.dark .border-white\/70{ border-color:hsl(217 33% 26%) !important; }
+.dark .border-slate-200,.dark .border-slate-300,.dark .border-blue-100{ border-color:hsl(217 33% 22%) !important; }
+.dark .text-slate-900{ color:#e5edf7 !important; }
+.dark .text-slate-800,.dark .text-slate-700{ color:#cbd5e1 !important; }
+.dark .text-slate-600,.dark .text-slate-500{ color:#93a4bd !important; }
+.dark .text-slate-400{ color:#64748b !important; }
+/* neutralize the light section gradients so the dark body shows through */
+.dark .from-white,.dark .from-blue-50\/40{ --tw-gradient-from:transparent !important; --tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to) !important; }
+.dark .to-white,.dark .to-blue-50\/40{ --tw-gradient-to:transparent !important; }
+/* amber warning card */
+.dark .bg-amber-50{ background-color:hsl(38 92% 50% / .12) !important; }
+.dark .border-amber-200{ border-color:hsl(38 92% 50% / .3) !important; }
+.dark .text-amber-800{ color:#fcd34d !important; }
+/* colored status badges: soften light tints for dark bg */
+.dark .bg-emerald-100{ background-color:hsl(152 60% 40% / .18) !important; }
+.dark .bg-rose-100{ background-color:hsl(350 70% 55% / .18) !important; }
+.dark .bg-amber-100{ background-color:hsl(38 92% 50% / .18) !important; }
+.dark .bg-sky-100{ background-color:hsl(199 89% 55% / .18) !important; }
+.dark .bg-slate-100.text-slate-600{ color:#93a4bd !important; }
