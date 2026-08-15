@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, animate } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
@@ -26,13 +27,15 @@ export function ThemeToggle({ className = '' }) {
 // ---------- Logo ----------
 export function Logo({ className = '', dark = false }) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <div className="relative h-9 w-9 rounded-xl bg-gradient-to-br from-blue-600 to-sky-400 flex items-center justify-center shadow-lg shadow-blue-500/30">
-        <TrendingUp className="h-5 w-5 text-white" strokeWidth={2.5} />
-      </div>
-      <span className={`text-lg font-bold tracking-tight ${dark ? 'text-white' : 'text-slate-900'}`}>
-        Funded<span className="text-blue-600">Tech</span>Street
-      </span>
+    <div className={`flex items-center justify-center ${className}`}>
+      <Image
+        src="/logo.png"
+        alt="FundedTechStreet logo"
+        width={113}
+        height={32}
+        priority
+        className={dark ? 'brightness-100' : 'brightness-100'}
+      />
     </div>
   )
 }
