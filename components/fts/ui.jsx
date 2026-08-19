@@ -40,10 +40,10 @@ export function Logo({ className = '', dark = false }) {
       <Image
         src="/logo.png"
         alt="FundedTechStreet logo"
-        width={113}
-        height={32}
+        width={82}
+        height={24}
         priority
-        className={dark ? 'brightness-100' : 'brightness-100'}
+        className={`object-contain ${dark ? 'brightness-100' : 'brightness-100'}`}
       />
     </div>
   )

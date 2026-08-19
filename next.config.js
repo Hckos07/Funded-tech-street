@@ -10,10 +10,8 @@ const nextConfig = {
   serverExternalPackages: ['mongodb'],
   webpack(config, { dev }) {
     if (dev) {
-      // Reduce CPU/memory from file watching
+      // Avoid polling watchers in dev; polling can increase CPU and memory usage.
       config.watchOptions = {
-        poll: 2000, // check every 2 seconds
-        aggregateTimeout: 300, // wait before rebuilding
         ignored: ['**/node_modules'],
       };
     }

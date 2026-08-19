@@ -462,9 +462,32 @@ function CTA({ onGetFunded }) {
 
 function Footer() {
   const cols = [
-    ['Platform', ['Challenges', 'How It Works', 'Rules', 'FAQ']],
-    ['Company', ['About', 'Contact', 'Support']],
-    ['Legal', ['Terms', 'Privacy', 'Risk Disclosure']],
+    {
+      title: 'Platform',
+      links: [
+        { label: 'Challenges', href: '#' },
+        { label: 'How It Works', href: '#' },
+        { label: 'Rules', href: '#' },
+        { label: 'FAQ', href: '#' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About', href: '#' },
+        { label: 'Contact', href: '#' },
+        { label: 'Support', href: '#' },
+      ],
+    },
+    {
+      title: 'Legal',
+      links: [
+        { label: 'Terms', href: '/legal/terms-of-service' },
+        { label: 'Privacy', href: '/legal/privacy-policy' },
+        { label: 'Risk Disclosure', href: '/legal/risk-disclosure' },
+        { label: 'All policies', href: '/legal' },
+      ],
+    },
   ]
   return (
     <footer className="border-t bg-white pt-14 pb-8">
@@ -481,11 +504,17 @@ function Footer() {
               ))}
             </div>
           </div>
-          {cols.map(([title, links]) => (
+          {cols.map(({ title, links }) => (
             <div key={title}>
               <h4 className="font-semibold text-slate-900">{title}</h4>
               <ul className="mt-4 space-y-2.5">
-                {links.map((l) => <li key={l}><a href="#" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">{l}</a></li>)}
+                {links.map((link) => (
+                  <li key={`${title}-${link.label}`}>
+                    <a href={link.href || '#'} className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
